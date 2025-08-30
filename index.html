@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My App Download</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #121212;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    .download-btn {
+      display: inline-block;
+      padding: 15px 30px;
+      background: #3a82f7;
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 10px;
+      margin: 30px 0;
+    }
+    .download-btn:hover {
+      background: #2f6ad9;
+    }
+    .slider {
+      max-width: 400px;
+      margin: auto;
+      overflow: hidden;
+      border-radius: 15px;
+    }
+    .slides {
+      display: flex;
+      width: 300%;
+      animation: slide 9s infinite;
+    }
+    .slides img {
+      width: 100%;
+      border-radius: 15px;
+    }
+    @keyframes slide {
+      0% {transform: translateX(0);}
+      33% {transform: translateX(-100%);}
+      66% {transform: translateX(-200%);}
+      100% {transform: translateX(0);}
+    }
+  </style>
+</head>
+<body>
+
+  <h1>My App</h1>
+  <p>Download the latest version of my app from here.</p>
+
+  <a class="download-btn" href="myapp.apk" download>Download</a>
+
+  <h2>Screenshots</h2>
+  <div class="slider">
+    <div class="slides">
+      <img src="screenshot1.png" alt="Screenshot 1">
+      <img src="screenshot2.png" alt="Screenshot 2">
+      <img src="screenshot3.png" alt="Screenshot 3">
+    </div>
+  </div>
+
+</body>
+</html>
