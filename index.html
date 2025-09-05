@@ -1,72 +1,241 @@
-<!DOCTYPE html>
+<!doctype html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Filinio</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Finilio — Fast, Simple, Beautiful</title>
+  <meta name="description" content="Download the Finilio app. Simple, fast and elegant. See screenshots below." />
+  <meta name="theme-color" content="#0ea5e9" />
+  <meta property="og:title" content="Finilio — Fast, Simple, Beautiful" />
+  <meta property="og:description" content="Download the Finilio app. Simple, fast and elegant. See screenshots below." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://finilio.github.io/" />
+  <meta property="og:image" content="https://finilio.github.io/assets/cover.png" />
+  <link rel="icon" href="/assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg: #0b1020;
+      --fg: #f8fafc;
+      --muted: #9aa4b2;
+      --brand: #0ea5e9; /* sky-500 */
+      --brand-2: #22d3ee; /* cyan-400 */
+      --card: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.08);
+      --shadow: 0 10px 30px rgba(2,6,23,.25);
+    }
+    @media (prefers-color-scheme: light) {
+      :root{
+        --bg: #f8fafc;
+        --fg: #0f172a;
+        --muted:#475569;
+        --card: #ffffff;
+        --border: #e2e8f0;
+        --shadow: 0 10px 30px rgba(15,23,42,.07);
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
     body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: #121212;
-      color: #fff;
       margin: 0;
-      padding: 0;
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, "Noto Sans", sans-serif;
+      color: var(--fg);
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(14,165,233,.25), transparent 55%),
+                  radial-gradient(1000px 500px at 120% 10%, rgba(34,211,238,.20), transparent 60%),
+                  var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
-    .download-btn {
-      display: inline-block;
-      padding: 15px 30px;
-      background: #3a82f7;
-      color: white;
-      font-size: 20px;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 10px;
-      margin: 30px 0;
-    }
-    .download-btn:hover {
-      background: #2f6ad9;
-    }
-    .slider {
-      max-width: 400px;
-      margin: auto;
-      overflow: hidden;
-      border-radius: 15px;
-    }
-    .slides {
-      display: flex;
-      width: 300%;
-      animation: slide 9s infinite;
-    }
-    .slides img {
-      width: 100%;
-      border-radius: 15px;
-    }
-    @keyframes slide {
-      0% {transform: translateX(0);}
-      33% {transform: translateX(-100%);}
-      66% {transform: translateX(-200%);}
-      100% {transform: translateX(0);}
-    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    header { position: sticky; top: 0; backdrop-filter: saturate(1.2) blur(6px); background: color-mix(in oklab, var(--bg) 85%, transparent); border-bottom: 1px solid var(--border); z-index: 50; }
+    .nav { display:flex; align-items:center; justify-content:space-between; padding:14px 0; }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing: .2px; }
+    .logo { width:34px; height:34px; border-radius:14px; background: conic-gradient(from 220deg, var(--brand), var(--brand-2)); box-shadow: var(--shadow); }
+    .pill { display:inline-flex; gap:8px; align-items:center; border:1px solid var(--border); background: var(--card); padding:6px 10px; border-radius:999px; font-size:12px; color: var(--muted); }.hero { padding: 56px 0 24px; text-align:center; position:relative; }
+.h1 { font-size: clamp(32px, 5vw, 54px); line-height: 1.06; margin: 0 0 14px; letter-spacing:-.02em; font-weight: 800; }
+.sub { font-size: clamp(16px, 2.4vw, 18px); color: var(--muted); margin: 0 auto 28px; max-width: 740px; }
+
+.cta { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+.btn { display:inline-flex; align-items:center; gap:10px; padding:14px 18px; border-radius: 14px; border: 1px solid var(--border); background: var(--card); font-weight: 600; box-shadow: var(--shadow); transition: transform .15s ease, box-shadow .15s ease, background .2s ease; }
+.btn:hover { transform: translateY(-1px); box-shadow: 0 14px 34px rgba(2,6,23,.28); }
+.btn:active { transform: translateY(0); }
+.btn.primary { background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: white; border-color: transparent; }
+
+.badges { margin-top: 12px; display:flex; gap:10px; justify-content:center; color: var(--muted); font-size: 13px; }
+
+/* Card wrapper for the carousel */
+.section { padding: 24px 0 64px; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; box-shadow: var(--shadow); padding: 14px; }
+
+/* Carousel */
+.carousel { position:relative; overflow:hidden; border-radius: 16px; }
+.track { display:flex; transition: transform .5s ease; will-change: transform; user-select:none; }
+.slide { flex:0 0 100%; padding: 6px; }
+.frame { border-radius: 14px; overflow:hidden; background:#0b1220; border: 1px solid var(--border); }
+.frame img { width:100%; height: 62vh; max-height: 620px; min-height: 360px; display:block; object-fit: cover; }
+
+.dots { display:flex; gap:8px; justify-content:center; padding: 14px 8px 0; }
+.dot { width: 8px; height:8px; border-radius:999px; background: color-mix(in srgb, var(--muted) 46%, transparent); border: 1px solid var(--border); transition: width .2s ease, background .2s ease; }
+.dot.active { width: 28px; background: linear-gradient(90deg, var(--brand), var(--brand-2)); border-color: transparent; }
+
+.navbtn { position:absolute; top:50%; translate: 0 -50%; background: color-mix(in srgb, var(--bg) 72%, transparent); border:1px solid var(--border); backdrop-filter: blur(6px); padding:10px 12px; border-radius: 12px; cursor:pointer; display:grid; place-items:center; }
+.navbtn:hover{ background: color-mix(in srgb, var(--bg) 85%, transparent); }
+.navbtn:active{ transform: scale(.98); }
+.navbtn svg { width:22px; height:22px; }
+.prev { left: 16px; }
+.next { right: 16px; }
+
+.kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; border:1px solid var(--border); padding:2px 6px; border-radius:8px; background: var(--card); font-size:12px; color: var(--muted); }
+
+footer { border-top: 1px solid var(--border); padding: 26px 0 40px; color: var(--muted); }
+
+/* Small screens */
+@media (max-width: 600px) {
+  .frame img { height: 54vh; min-height: 260px; }
+  .navbtn { display:none; }
+}
+
   </style>
 </head>
 <body>
-
-  <h1>Filinio</h1>
-  <p>Download the latest version of Filinio from here.</p>
-
-  <a class="download-btn" href="asset/myapp.apk" download>Download</a>
-
-  <h2>Screenshots</h2>
-  <div class="slider">
-    <div class="slides">
-      <img src="asset/screenshots/1.jpg" alt="Screenshot 1">
-      <img src="asset/screenshots/2.jpg" alt="Screenshot 2">
-      <img src="asset/screenshots/3.jpg" alt="Screenshot 3">
+  <header>
+    <div class="container nav">
+      <div class="brand"><span class="logo" aria-hidden="true"></span> <span>Finilio</span></div>
+      <div class="pill" aria-hidden="true">Clean • Fast • Secure</div>
+    </div>
+  </header>  <main>
+    <section class="hero container" aria-labelledby="title">
+      <h1 id="title" class="h1">A better way to use <span style="background:linear-gradient(90deg,var(--brand),var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent;">Finilio</span></h1>
+      <p class="sub">Download the latest APK and preview the experience through live screenshots below. Built with love, polished with care.</p>
+      <div class="cta" role="group" aria-label="Primary actions">
+        <a class="btn primary" id="downloadBtn" href="/download/Finilio-latest.apk" download>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3a1 1 0 0 1 1 1v9.586l2.293-2.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4A1 1 0 0 1 8.293 11.293L10.586 13.586V4a1 1 0 0 1 1-1Zm-8 14a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1Z"/></svg>
+          <span>Download APK</span>
+        </a>
+        <a class="btn" href="https://github.com/finilio" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.92 5.31.92 11.58c0 4.86 3.15 8.99 7.5 10.45.55.1.75-.24.75-.53v-1.86c-3.05.67-3.7-1.3-3.7-1.3-.5-1.28-1.23-1.62-1.23-1.62-1.01-.69.08-.68.08-.68 1.11.08 1.69 1.14 1.69 1.14 1 .1.78-.87 1.94-1.36-2.43-.28-4.98-1.21-4.98-5.38 0-1.19.43-2.17 1.14-2.93-.11-.28-.49-1.4.11-2.92 0 0 .92-.29 3.01 1.12.88-.25 1.83-.37 2.77-.38.94 0 1.89.13 2.77.38 2.09-1.4 3.01-1.12 3.01-1.12.6 1.53.22 2.64.11 2.92.71.76 1.14 1.74 1.14 2.93 0 4.18-2.56 5.1-4.99 5.38.79.34 1.57 1.96 1.57 3.95v2.93c0 .29.19.63.75.53 4.34-1.46 7.5-5.59 7.5-10.45C23.08 5.31 18.27.5 12 .5Z"/></svg>
+          <span>View on GitHub</span>
+        </a>
+      </div>
+      <div class="badges" aria-hidden="true">
+        <span>Android • APK</span>
+        <span>•</span>
+        <span>No ads</span>
+        <span>•</span>
+        <span>Light & Dark</span>
+      </div>
+    </section><section class="container section" aria-labelledby="shots">
+  <div class="card">
+    <div class="carousel" id="carousel" aria-roledescription="carousel" aria-label="App screenshots">
+      <button class="navbtn prev" id="prevBtn" aria-label="Previous screenshot">
+        <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="navbtn next" id="nextBtn" aria-label="Next screenshot">
+        <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+      <div class="track" id="track" aria-live="polite">
+        <!-- Replace src values with your real images under /assets/screenshots/ -->
+        <div class="slide"><div class="frame"><img loading="eager" src="asset/screenshots/1.jpg" alt="Finilio – Home screen" draggable="false"></div></div>
+        <div class="slide"><div class="frame"><img loading="lazy" src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?q=80&w=1600&auto=format&fit=crop" alt="Finilio – Stats and charts" draggable="false"></div></div>
+        <div class="slide"><div class="frame"><img loading="lazy" src="https://images.unsplash.com/photo-1559166631-ef208440c4d2?q=80&w=1600&auto=format&fit=crop" alt="Finilio – Settings screen" draggable="false"></div></div>
+        <div class="slide"><div class="frame"><img loading="lazy" src="https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=1600&auto=format&fit=crop" alt="Finilio – Details screen" draggable="false"></div></div>
+      </div>
+    </div>
+    <div class="dots" id="dots" role="tablist" aria-label="Slide indicators"></div>
+    <div style="text-align:center; margin-top:10px; color:var(--muted); font-size:13px;">
+      Tip: Use <span class="kbd">←</span> <span class="kbd">→</span> or swipe.
     </div>
   </div>
+</section>
 
-</body>
+  </main>  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:center;">
+      <div>© <span id="year"></span> Finilio. All rights reserved.</div>
+      <div style="display:flex; gap:12px; align-items:center;">
+        <a href="mailto:hello@finilio.app" class="pill">Contact</a>
+        <a href="#" class="pill">Privacy</a>
+      </div>
+    </div>
+  </footer>  <noscript>
+    <div class="container" style="margin: 16px auto; color:var(--muted);">
+      JavaScript is disabled; screenshots are shown statically.
+    </div>
+  </noscript>  <script>
+    // Copyright year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Carousel logic
+    (function(){
+      const track = document.getElementById('track');
+      const slides = Array.from(track.children);
+      const dotsWrap = document.getElementById('dots');
+      const prev = document.getElementById('prevBtn');
+      const next = document.getElementById('nextBtn');
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      let index = 0;
+      let autoTimer = null;
+      let autoMs = 3000; // autoplay speed
+      let locked = false; // block spam clicks during transition
+
+      // Create dots
+      slides.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.className = 'dot' + (i === 0 ? ' active' : '');
+        b.setAttribute('role','tab');
+        b.setAttribute('aria-label','Go to slide ' + (i+1));
+        b.addEventListener('click', () => go(i));
+        dotsWrap.appendChild(b);
+      });
+      const dots = Array.from(dotsWrap.children);
+
+      function update(){
+        track.style.transform = `translateX(-${index * 100}%)`;
+        dots.forEach((d,i)=> d.classList.toggle('active', i===index));
+      }
+      function go(i){
+        if(locked) return; locked = true;
+        index = (i + slides.length) % slides.length;
+        update();
+        setTimeout(()=> locked = false, 520);
+        restartAuto();
+      }
+      function nextSlide(){ go(index + 1); }
+      function prevSlide(){ go(index - 1); }
+
+      // Buttons + keyboard
+      next.addEventListener('click', nextSlide);
+      prev.addEventListener('click', prevSlide);
+      window.addEventListener('keydown', (e)=>{
+        if(e.key === 'ArrowRight') nextSlide();
+        if(e.key === 'ArrowLeft') prevSlide();
+      });
+
+      // Pointer drag
+      let startX = 0, dx = 0, dragging = false;
+      function onDown(e){ dragging = true; startX = e.clientX || e.touches?.[0]?.clientX || 0; track.style.transition = 'none'; stopAuto(); }
+      function onMove(e){ if(!dragging) return; const x = e.clientX || e.touches?.[0]?.clientX || 0; dx = x - startX; track.style.transform = `translateX(calc(-${index*100}% + ${dx}px))`; }
+      function onUp(){ if(!dragging) return; track.style.transition = ''; dragging = false; const threshold = window.innerWidth * 0.12; if(Math.abs(dx) > threshold){ dx > 0 ? prevSlide() : nextSlide(); } else { update(); } dx = 0; if(!prefersReduced) startAuto(); }
+      track.addEventListener('pointerdown', onDown); track.addEventListener('pointermove', onMove); track.addEventListener('pointerup', onUp); track.addEventListener('pointerleave', onUp);
+      track.addEventListener('touchstart', onDown, {passive:true}); track.addEventListener('touchmove', onMove, {passive:true}); track.addEventListener('touchend', onUp);
+
+      // Auto play
+      function startAuto(){ if(prefersReduced) return; stopAuto(); autoTimer = setInterval(nextSlide, autoMs); }
+      function stopAuto(){ if(autoTimer) clearInterval(autoTimer); autoTimer = null; }
+      function restartAuto(){ stopAuto(); startAuto(); }
+      startAuto();
+
+      // Pause on hover (desktop)
+      const carousel = document.getElementById('carousel');
+      carousel.addEventListener('mouseenter', stopAuto);
+      carousel.addEventListener('mouseleave', startAuto);
+
+      // Initial render
+      update();
+    })();
+  </script></body>
 </html>
-
-
